@@ -18,6 +18,7 @@ void				push(t_stack **s, int data);
 int					pop(t_stack **s);
 t_stack				*init_stack(void);
 int					is_empty(t_stack *s);
-
+int					is_sorted(t_stack *s);
+unsigned int		stack_size(t_stack *s);
 
 #endif
