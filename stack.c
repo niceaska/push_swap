@@ -1,0 +1,44 @@
+#include "push-swap.h"
+
+void	push(t_stack **s, int data)
+{
+	t_lst *new;
+
+	if (!(new = (t_lst *)malloc(sizeof(t_lst))))
+		return ;
+	new->data = data;
+	if ((*s)->top)
+		new->next = (*s)->top;
+	else
+		new->next = NULL;
+	(*s)->top = new;
+}
+
+int		pop(t_stack **s)
+{
+	int		data;
+	t_lst	*tmp;
+
+	if (!s || !*s)
+		return ;
+	data = (*s)->top->data;
+	tmp = (*s)->top;
+	(*s)->top = (*s)->top->next;
+	free(tmp);
+	return (data);
+}
+
+t_stack	*init_stack(void)
+{
+	t_stack *stack;
+	
+	if (!(stack = (t_stack *)malloc(sizeof(t_stack))))
+		return (NULL);
+	stack->top = NULL;
+	return (stack);
+}
+
+int		is_empty(t_stack *s)
+{
+	return ((!s->top) ? 1 : 0);
+}
