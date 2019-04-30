@@ -20,7 +20,7 @@ int		pop(t_stack **s)
 	t_lst	*tmp;
 
 	if (!s || !*s)
-		return ;
+		return (0);
 	data = (*s)->top->data;
 	tmp = (*s)->top;
 	(*s)->top = (*s)->top->next;
