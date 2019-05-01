@@ -31,7 +31,7 @@ int		pop(t_stack **s)
 t_stack	*init_stack(void)
 {
 	t_stack *stack;
-	
+
 	if (!(stack = (t_stack *)malloc(sizeof(t_stack))))
 		return (NULL);
 	stack->top = NULL;
