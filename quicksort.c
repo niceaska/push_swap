@@ -6,19 +6,19 @@ static int		find_pivot(int *arr, int bot, int top)
 	int		swp;
 
 	mid = (bot + top) / 2;
-	if (arr[mid] < arr[bot])
+	if (arr[mid] > arr[bot])
 	{
 		swp = arr[mid];
 		arr[mid] = arr[bot];
 		arr[bot] = swp;
 	}
-	if (arr[top] < arr[bot])
+	if (arr[top] > arr[bot])
 	{
 		swp = arr[top];
 		arr[top] = arr[bot];
 		arr[bot] = swp;
 	}
-	if (arr[top] < arr[mid])
+	if (arr[top] > arr[mid])
 	{
 		swp = arr[top];
 		arr[top] = arr[mid];
@@ -39,7 +39,7 @@ static int		part(int *arr, int bot, int top)
 	j = bot;
 	while (j < top) 
 	{  
-		if (arr[j] <= pivot) 
+		if (arr[j] >= pivot) 
 		{ 
 			i++;
 			swp = arr[i];

@@ -58,7 +58,7 @@ static int		append_instr(char **tab, t_stack **sa, t_stack **sb)
 			rev_rotate(sa, sb, tab[i]);
 		i++;
 	}
-	return(is_sorted(*sa) && is_empty(*sb));
+	return(is_sorted((*sa), 0, stack_size(*sa)) && is_empty(*sb));
 }
 
 static void		free_everything(char *line, t_stack *sa, t_stack *sb, int *arr)

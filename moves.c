@@ -4,14 +4,14 @@ void	swap(t_stack **sa, t_stack **sb, char *ord)
 {
 	int swp;
 
-	if (sa && (*sa)->top && (*sa)->top->next && \
+	if (sa && *sa && (*sa)->top && (*sa)->top->next && \
 		(!ft_strcmp(ord, "sa") || !ft_strcmp(ord, "ss")))
 	{
 		swp = (*sa)->top->data;
 		(*sa)->top->data = (*sa)->top->next->data;
 		(*sa)->top->next->data = swp;
 	}
-	if (sb && (*sb)->top && (*sb)->top->next && \
+	if (sb && *sb && (*sb)->top && (*sb)->top->next && \
 		(!ft_strcmp(ord, "sb") || !ft_strcmp(ord, "ss")))
 	{
 		swp = (*sb)->top->data;
@@ -33,8 +33,8 @@ void	rotate_ab(t_stack **sa, t_stack **sb, char *ord)
 	t_lst	*first;
 	t_lst	*list;
 
-	if (sa && (*sa)->top && (*sa)->top->next && \
-		(!ft_strcmp(ord, "ra") || !ft_strcmp(ord, "rr")))
+	if (sa && (*sa)->top && (*sa)->top->next && !is_empty(*sa)\
+		&& (!ft_strcmp(ord, "ra") || !ft_strcmp(ord, "rr")))
 	{
 		first = (*sa)->top;
 		(*sa)->top = (*sa)->top->next;
@@ -44,8 +44,8 @@ void	rotate_ab(t_stack **sa, t_stack **sb, char *ord)
 		list->next = first;
 		first->next = NULL;
 	}
-	if (sb && (*sb)->top && (*sb)->top->next && \
-		(!ft_strcmp(ord, "rb") || !ft_strcmp(ord, "rr")))
+	if (sb && (*sb)->top && (*sb)->top->next && !is_empty(*sb)\
+		&& (!ft_strcmp(ord, "rb") || !ft_strcmp(ord, "rr")))
 	{
 		first = (*sb)->top;
 		(*sb)->top = (*sb)->top->next;

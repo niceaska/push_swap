@@ -64,7 +64,7 @@ int		*check_args(char **ag, int ac, t_stack **sa, unsigned int i)
 	unsigned int	size;
 
 	size = 0;
-	if (!(arr = (int *)malloc(sizeof(int) * (ac - 1))))
+	if (!(arr = (int *)malloc(sizeof(int) * (ac))))
 		return (NULL);
 	while (--ac)
 	{

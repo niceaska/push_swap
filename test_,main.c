@@ -6,14 +6,23 @@ int	main(int ac, char **ag)
 	int *arr;
 	t_stack *sa = init_stack();
 	t_stack *sb = init_stack();
-	
 	if (!(arr = check_args(ag, ac, &sa, 0)))
 		print_error(sa, sb);
-	merge_sort(sa, sb, arr, ac -1);
+	
 
+
+	//merge_sort(sa, sb, arr, ac -1);
+minmax_sort(sa, sb, arr, ac -1);
+
+	//ins_sort(sa, sb);
+	printf("%d\n", ac - 1);
+	//print_stack(sa, sb);
+	free_stack(sa);
+	free_stack(sb);
+	free(arr);
+	
 //	swap(&sa, &sb, "sa");
 	//push_ab(&sa, &sb, "pb");
-//	print_stack(sa, sb);
 
 	//push_ab(&sa, &sb, "pb");
 	//push_ab(&sa, &sb, "pb");
