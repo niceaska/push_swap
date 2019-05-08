@@ -1,55 +1,40 @@
 #include "push-swap.h"
 
-static void		best_path(t_stack *sa, t_stack *sb)
+void	sort_tree(t_stack *sa, t_stack *sb)
 {
-	t_lst			*list;
-	char			*str;
-	int				min;
-	unsigned int	i;
+	unsigned int size;
 
-	list = sa->top;
-	min = find_min(sa);
-	i = 0;
-	while (list->data != min)
+	size = stack_size(sa);
+	if (size <= 3)
+		if (sa->top->next->data < sa->top->data)
+			op_sa(sa, sb);
+	if (size > 2)
 	{
-		i++;
-		list = list->next;
-	}
-	if (i <= stack_size(sa) / 2)
-	{
-		while (sa->top->data != min)
-		{
-		
-			rotate_ab(&sa, &sb, "ra");
-			ft_putendl("ra");
-		}
-	}
-	else
-	{
-		while (sa->top->data != min)
-		{
-			rev_rotate(&sa, &sb, "rra");
-			ft_putendl("rra");
-		}
+		if (sa->top->data == find_max(sa, 0, 0))
+			ra(sa, sb);
+		if (find_bottom(sa) == find_min(sa, 0, 0))
+			rra(sa, sb);
 	}
 }
 
-void	ins_sort(t_stack *sa, t_stack *sb)
+void	sel_sort(t_stack *sa, t_stack *sb)
 {
-	char *str;
-
-	int s = stack_size(sa);
-	str = NULL;
+	int max;
 	int min;
-	//	print_stack(sa, sb);
 
-	while (!is_empty(sa) && stack_size(sa) >= 2)
+	while (!is_sorted(sa, 0, stack_size(sa)) && stack_size(sa) >= 3)
 	{
-		min = find_min(sa);
-		best_path(sa, sb);
-		push_ab(&sa, &sb, "pb");
-		ft_putendl("pb");
+		min = find_min(sa, 0, 0);
+		goto_pos(sa, sb, get_index(sa, min), "ra");
+		pb(sa, sb);
+	}
+	if (!is_sorted(sa, 0, stack_size(sa)))
+		sort_tree(sa, sb);
+	while (!is_empty(sb))
+	{
+		max = find_max(sb, 0, 0);
+		goto_pos(sa, sb, get_index(sb, max), "b");
+		pa(sa, sb);
 	}
 
-			ft_memdel((void *)str);
 }

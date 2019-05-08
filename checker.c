@@ -84,11 +84,11 @@ int				main(int ac, char **ag)
 		sa = init_stack();
 		sb = init_stack();
 		if (!(arr = check_args(ag, ac, &sa, 0)))
-			print_error(sa, sb);
+			print_error(sa, sb, NULL);
 		if ((inst = read_instr(0, 0, &line, NULL)) == NULL)
 		{
 			ft_memdel((void *)&arr);
-			print_error(sa, sb);
+			print_error(sa, sb, NULL);
 		}
 		(append_instr(inst, &sa, &sb) ? write(1, "OK\n", 3) : write(1, "KO\n", 3));
 		free_tab(inst);

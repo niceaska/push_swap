@@ -52,7 +52,7 @@ int		is_more(t_stack *s, int val)
 	return (0);
 }
 
-int		to_next(t_stack *s, int val)
+unsigned int		to_next(t_stack *s, int val)
 {
 	t_lst			*list;
 	unsigned int	i;
@@ -69,7 +69,7 @@ int		to_next(t_stack *s, int val)
 	return (i);
 }
 
-int		find_place(t_stack *s, int val)
+unsigned int		find_place(t_stack *s, int val)
 {
 	unsigned int	i;
 	int				cmp;
@@ -97,78 +97,3 @@ int		find_place(t_stack *s, int val)
 		i++;
 	}
 }
-
-/*
-static int		*get_subarray(t_stack *s, int bottom, int top)
-{
-	t_lst			*list;
-	unsigned int	size;
-	int				*arr;
-	int				i;
-	int				j;
-
-	j = 0;
-	i = 0;
-	list = s->top;
-	size = top - bottom + 1;
-	if (size >= 1)
-	{
-		arr = (int *)malloc(sizeof(int) * size);
-		while (list)
-		{
-			if (i >= bottom && i <= top)
-				arr[j++] = list->data;
-			i++;
-			list = list->next;
-		}
-		return (arr);
-
-	}
-	return (0);
-}
-
-int		is_values(t_stack *s, int *arr, int size)
-{
-	t_lst *list;
-	unsigned int j;
-
-	list = s->top;
-	while (list)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (list->data == arr[j])
-				return (1);
-			j++;
-		}
-
-		list = list->next;
-	}
-	return (0);
-}
-
-
-int		path_to_next(t_stack *s, int *arr, int size)
-{
-	t_lst			*list;
-	unsigned int	i;
-	unsigned int	j;
-
-	i = 0;
-	list = s->top;
-	while (list)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (list->data == arr[j])
-				return (i);
-			j++;
-		}
-		i++;
-		list = list->next;
-	}
-	return (i);
-}
-*/

@@ -22,9 +22,9 @@ static void		devide(t_stack *sa, t_stack *sb, int *arr, unsigned int size)
 
 static t_move	*find_path(t_stack *sa, t_stack *sb, int el)
 {
-	t_move	*move;
-	int		path_sa;
-	int		path_sb;
+	t_move			*move;
+	unsigned int	path_sa;
+	unsigned int	path_sb;
 
 	path_sa = (find_place(sa, el) > stack_size(sa) / 2) ?\
 		stack_size(sa) - find_place(sa, el) : find_place(sa, el);
@@ -37,15 +37,15 @@ static t_move	*find_path(t_stack *sa, t_stack *sb, int el)
 	return (move);
 }
 
-static int		find_best_index(t_stack *sa, t_stack *sb)
+static unsigned int		find_best_index(t_stack *sa, t_stack *sb)
 {
-	t_move	*move;
-	t_lst	*list;
-	int		best_index;
-	int		best_path;
+	t_move			*move;
+	t_lst			*list;
+	unsigned int	best_index;
+	unsigned int	best_path;
 
 	best_index = 0;
-	best_path = 2147483647;
+	best_path = 4294967295;
 	list = sb->top;
 	while (list)
 	{
@@ -63,10 +63,10 @@ static int		find_best_index(t_stack *sa, t_stack *sb)
 
 static void		insertion_s(t_stack *sa, t_stack *sb)
 {
-	int pl_a;
-	int pl_b;
-	int val1;
-	int val2;
+	unsigned int	pl_a;
+	unsigned int	pl_b;
+	int				val1;
+	int				val2;
 
 	while (!is_empty(sb))
 	{
@@ -90,7 +90,7 @@ void			mainsort(t_stack *sa, t_stack *sb, int *arr, unsigned int size)
 {
 	int		min;
 	int		max;
-		
+
 	while (size / 4 && !is_sorted(sa, 0, stack_size(sa)))
 	{
 			devide(sa, sb, arr, size);

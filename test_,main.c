@@ -16,7 +16,7 @@ int	main(int ac, char **ag)
 
 	//ins_sort(sa, sb);
 	//printf("%d\n", ac - 1);
-print_stack(sa, sb);
+//print_stack(sa, sb);
 	free_stack(sa);
 	free_stack(sb);
 	free(arr);

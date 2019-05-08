@@ -1,9 +1,13 @@
 #include "push-swap.h"
 
-void			print_error(t_stack *sa, t_stack *sb)
+void			print_error(t_stack *sa, t_stack *sb, t_env *e)
 {
-	free_stack(sa);
-	free_stack(sb);
+	if (sa)
+		free_stack(sa);
+	if (sb)
+		free_stack(sb);
+	if (e)
+		free(e);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
