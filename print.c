@@ -1,4 +1,4 @@
-#include "push-swap.h"
+#include "push_swap.h"
 
 void			print_error(t_stack *sa, t_stack *sb, t_env *e)
 {

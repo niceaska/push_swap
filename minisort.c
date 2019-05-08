@@ -1,4 +1,4 @@
-#include "push-swap.h"
+#include "push_swap.h"
 
 void	sort_tree(t_stack *sa, t_stack *sb)
 {

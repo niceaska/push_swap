@@ -1,4 +1,4 @@
-#include "push-swap.h"
+#include "push_swap.h"
 
 int 		get_by_index(t_stack *sa, unsigned int index)
 {
@@ -96,4 +96,5 @@ unsigned int		find_place(t_stack *s, int val)
 		list = list->next;
 		i++;
 	}
+	return (0);
 }

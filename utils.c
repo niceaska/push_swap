@@ -1,6 +1,6 @@
-#include "push-swap.h"
+#include "push_swap.h"
 
-unsigned int 	get_index(t_stack *sa, unsigned int val)
+unsigned int 	get_index(t_stack *sa, int val)
 {
 	t_lst			*list;
 	unsigned int	i;

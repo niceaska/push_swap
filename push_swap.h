@@ -1,7 +1,7 @@
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
  
-# include "libft/libft.h"
+# include "libft.h"
 
 typedef struct		s_lst
 {
@@ -39,7 +39,7 @@ unsigned int		stack_size(t_stack *s);
 
 void				free_stack(t_stack *s);
 void				free_tab(char **tab);
-void				print_stack(t_stack *sa, t_stack *sb, t_env *e); 
+void				print_stack(t_stack *sa, t_stack *sb); 
 void				print_error(t_stack *sa, t_stack *sb, t_env *e);
 
 int					*check_args(char **ag, int ac, t_stack **sa, unsigned int i);
@@ -50,8 +50,8 @@ void				rev_rotate(t_stack **sa, t_stack **sb, char *ord);
 
 int					find_max(t_stack *s, int excl, int flag);
 int					find_min(t_stack *s, int excl, int flag);
-void				ft_quicksort(int *arr, int bot, int top); 
-unsigned int 		get_index(t_stack *sa, unsigned int val);
+void				ft_quicksort(int *arr, unsigned int bot, unsigned int top);
+unsigned int 		get_index(t_stack *sa, int val);
 void				goto_pos(t_stack *sa, t_stack *sb, unsigned int pos, char *o);
 int 				get_by_index(t_stack *sa, unsigned int index);
 unsigned int		find_place(t_stack *s, int val);

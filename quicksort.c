@@ -1,6 +1,6 @@
-#include "push-swap.h"
+#include "push_swap.h"
 
-static int		find_pivot(int *arr, int bot, int top)
+static int		find_pivot(int *arr, unsigned int bot, unsigned int top)
 {
 	int		mid;
 	int		swp;
@@ -27,7 +27,7 @@ static int		find_pivot(int *arr, int bot, int top)
 	return (arr[top]);
 }
 
-static int		part(int *arr, int bot, int top) 
+static int		part(int *arr,  unsigned int bot, unsigned int top) 
 { 
 	int				pivot;
 	int				swp;
@@ -54,7 +54,7 @@ static int		part(int *arr, int bot, int top)
 	return (i + 1); 
 } 
 
-void			ft_quicksort(int *arr, int bot, int top) 
+void			ft_quicksort(int *arr, unsigned int bot, unsigned int top) 
 { 
 	int p;
 

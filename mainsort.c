@@ -1,4 +1,4 @@
-#include "push-swap.h"
+#include "push_swap.h"
 
 static void		devide(t_stack *sa, t_stack *sb, int *arr, unsigned int size)
 {

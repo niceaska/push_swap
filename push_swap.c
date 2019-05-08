@@ -1,4 +1,4 @@
-#include "push-swap.h"
+#include "push_swap.h"
 
 static t_env *init_env(void)
 {
