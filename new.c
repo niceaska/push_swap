@@ -71,6 +71,10 @@ static void		devider(t_stack *sa, t_stack *sb, int size)
 				rr(sa, sb);
 			else 
 				rb(sa, sb);
+		else
+			if (stack_size(sa) > 1 && sa->top->data > sa->top->next->data)
+				if (stack_size(sb) > 1 && sb->top->data < sb->top->next->data)
+					ss(sa, sb);
 		free(sub_mins);
 		free(sub_max);
 	}		

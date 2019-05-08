@@ -1,20 +1,5 @@
 #include "push-swap.h"
 
-int 		get_index(t_stack *sa, unsigned int val)
-{
-	t_lst			*list;
-	unsigned int	i;
-
-	i = 0;
-	list = sa->top;
-	while (list->data != val)
-	{
-		i++;
-		list = list->next;
-	}
-	return (i);
-}
-
 int 		get_by_index(t_stack *sa, unsigned int index)
 {
 	t_lst *list;
@@ -51,6 +36,95 @@ void		goto_pos(t_stack *sa, t_stack *sb, unsigned int pos, char *o)
 			while (sb->top->data != val)
 				rb(sa, sb);
 	}
+}
+
+int		is_more(t_stack *s, int val)
+{
+	t_lst *list;
+
+	list = s->top;
+	while (list)
+	{
+		if (list->data <= val)
+			return (1);
+		list = list->next;
+	}
+	return (0);
+}
+
+int		to_next(t_stack *s, int val)
+{
+	t_lst			*list;
+	unsigned int	i;
+
+	i = 0;
+	list = s->top;
+	while (list)
+	{
+		if (list->data <= val)
+			return (i);
+		i++;
+		list = list->next;
+	}
+	return (i);
+}
+
+int		find_place(t_stack *s, int val)
+{
+	unsigned int	i;
+	int				cmp;
+	t_lst			*list;
+	t_lst			*l1;
+
+	list = s->top;
+	i = 0;
+	while (list)
+	{
+		if (val < list->data)
+		{
+			l1 = s->top;
+			cmp = list->data;
+			while (l1)
+			{
+				if (val < l1->data && l1->data < cmp)
+					break ;
+				l1 = l1->next;
+			}
+			if (!l1)
+				return (i);
+		}
+		list = list->next;
+		i++;
+	}
+}
+
+/*
+static int		*get_subarray(t_stack *s, int bottom, int top)
+{
+	t_lst			*list;
+	unsigned int	size;
+	int				*arr;
+	int				i;
+	int				j;
+
+	j = 0;
+	i = 0;
+	list = s->top;
+	size = top - bottom + 1;
+	if (size >= 1)
+	{
+		arr = (int *)malloc(sizeof(int) * size);
+		while (list)
+		{
+			if (i >= bottom && i <= top)
+				arr[j++] = list->data;
+			i++;
+			list = list->next;
+		}
+		return (arr);
+
+	}
+	return (0);
 }
 
 int		is_values(t_stack *s, int *arr, int size)
@@ -97,3 +171,4 @@ int		path_to_next(t_stack *s, int *arr, int size)
 	}
 	return (i);
 }
+*/

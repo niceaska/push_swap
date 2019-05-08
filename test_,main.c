@@ -11,12 +11,12 @@ int	main(int ac, char **ag)
 	
 
 
-	//merge_sort(sa, sb, arr, ac -1);
-minmax_sort(sa, sb, arr, ac -1);
+	mainsort(sa, sb, arr, ac -1);
+//minmax_sort(sa, sb, arr, ac -1);
 
 	//ins_sort(sa, sb);
-	printf("%d\n", ac - 1);
-	//print_stack(sa, sb);
+	//printf("%d\n", ac - 1);
+print_stack(sa, sb);
 	free_stack(sa);
 	free_stack(sb);
 	free(arr);

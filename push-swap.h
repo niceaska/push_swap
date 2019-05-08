@@ -14,6 +14,14 @@ typedef struct		s_stack
 	struct s_lst	*top;
 }					t_stack;
 
+typedef struct		s_move
+{
+	int index;
+	int val;
+	int path;
+}					t_move;
+
+
 void				push(t_stack **s, int data);
 int					pop(t_stack **s);
 t_stack				*init_stack(void);
@@ -43,14 +51,16 @@ char				*case_swap(t_stack *sa, t_stack *sb);
 void				q_sort(int n, t_stack *sa, t_stack *sb);
 
 void				ft_quicksort(int *arr, int bot, int top); 
-void				merge_sort(t_stack *sa, t_stack *sb, int *arr, unsigned int size);
+void				mainsort(t_stack *sa, t_stack *sb, int *arr, unsigned int size);
 void				ins_sort(t_stack *sa, t_stack *sb);
-//void				devide(t_stack *sa, t_stack *sb, int *arr, unsigned int size);
 int 				get_index(t_stack *sa, unsigned int val);
 void				goto_pos(t_stack *sa, t_stack *sb, unsigned int pos, char *o);
-int					path_to_next(t_stack *s, int *arr, int size);
-int					is_values(t_stack *s, int *arr, int size);
+//int					path_to_next(t_stack *s, int *arr, int size);
+//int					is_values(t_stack *s, int *arr, int size);
 int 				get_by_index(t_stack *sa, unsigned int index);
+int					find_place(t_stack *s, int val);
+int					to_next(t_stack *s, int val);
+int					is_more(t_stack *s, int val);
 
 void				pa(t_stack *sa, t_stack *sb);
 void				pb(t_stack *sa, t_stack *sb);
@@ -62,6 +72,7 @@ void				rr(t_stack *sa, t_stack *sb);
 void				rrr(t_stack *sa, t_stack *sb);
 void				ss(t_stack *sa, t_stack *sb);
 void				op_sa(t_stack *sa, t_stack *sb);
+void				op_sb(t_stack *sa, t_stack *sb);
 
 
 

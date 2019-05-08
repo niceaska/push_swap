@@ -1,6 +1,21 @@
 #include "push-swap.h"
 
-int				is_sorted(t_stack *s, unsigned int start, unsigned int end)
+int 		get_index(t_stack *sa, unsigned int val)
+{
+	t_lst			*list;
+	unsigned int	i;
+
+	i = 0;
+	list = sa->top;
+	while (list->data != val)
+	{
+		i++;
+		list = list->next;
+	}
+	return (i);
+}
+
+int			is_sorted(t_stack *s, unsigned int start, unsigned int end)
 {
 	t_lst *list;
 	unsigned int i;
@@ -18,39 +33,6 @@ int				is_sorted(t_stack *s, unsigned int start, unsigned int end)
 		list = list->next;
 	}
 	return (1);
-}
-
-int				is_rev_sorted(t_stack *s)
-{
-	t_lst *list;
-
-	if (!s)
-		return (-1);
-	list = s->top;
-	while (list && list->next)
-	{
-		if (list->data < list->next->data)
-			return (0);
-		list = list->next;
-	}
-	return (1);
-}
-
-unsigned int	stack_size(t_stack *s)
-{
-	t_lst			*list;
-	unsigned int	size;		
-
-	size = 0;
-	if (!s)
-		return (0);
-	list = s->top;
-	while (list)
-	{
-		size++;
-		list = list->next;
-	}
-	return (size);
 }
 
 int		find_max(t_stack *s, int excl, int flag)
@@ -110,3 +92,31 @@ int		find_min(t_stack *s, int excl, int flag)
 	}
 	return (res);
 }
+
+int		find_bottom(t_stack *s)
+{
+	t_lst *list;
+
+	list = s->top;
+	while (list->next)
+		list = list->next;
+	return (list->data);
+}
+
+/*
+int				is_rev_sorted(t_stack *s)
+{
+	t_lst *list;
+
+	if (!s)
+		return (-1);
+	list = s->top;
+	while (list && list->next)
+	{
+		if (list->data < list->next->data)
+			return (0);
+		list = list->next;
+	}
+	return (1);
+}
+*/

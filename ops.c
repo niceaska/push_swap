@@ -59,3 +59,9 @@ void	op_sa(t_stack *sa, t_stack *sb)
 	swap(&sa, &sb, "sa");
 	ft_putendl("sa");
 }
+
+void	op_sb(t_stack *sa, t_stack *sb)
+{
+	swap(&sa, &sb, "sb");
+	ft_putendl("sb");
+}

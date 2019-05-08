@@ -42,3 +42,20 @@ int		is_empty(t_stack *s)
 {
 	return ((!s->top) ? 1 : 0);
 }
+
+unsigned int	stack_size(t_stack *s)
+{
+	t_lst			*list;
+	unsigned int	size;		
+
+	size = 0;
+	if (!s)
+		return (0);
+	list = s->top;
+	while (list)
+	{
+		size++;
+		list = list->next;
+	}
+	return (size);
+}
