@@ -1,21 +1,21 @@
 #include "push_swap.h"
 
-static void		devide(t_stack *sa, t_stack *sb, int *arr, unsigned int size)
+static void		devide(t_env *e, int *arr, unsigned int size)
 {
 	int mid;
 
 	ft_quicksort(arr, 0, size - 1);
 	mid = arr[size / 2];
-	while (is_more(sa, mid))
+	while (is_more(e->s_a, mid))
 	{
-		if (sa->top->data <= mid)
-			pb(sa, sb);
+		if (e->s_a->top->data <= mid)
+			pb(e);
 		else
 		{	
-			if (to_next(sa, mid) < stack_size(sa) / 2)
-				ra(sa, sb);
+			if (to_next(e->s_a, mid) < stack_size(e->s_a) / 2)
+				ra(e);
 			else
-				rra(sa, sb);
+				rra(e);
 		}
 	}
 }
@@ -26,8 +26,8 @@ static t_move	*find_path(t_stack *sa, t_stack *sb, int el)
 	unsigned int	path_sa;
 	unsigned int	path_sb;
 
-	path_sa = (find_place(sa, el) > stack_size(sa) / 2) ?\
-		stack_size(sa) - find_place(sa, el) : find_place(sa, el);
+	path_sa = (find_place(sa, el, 0) > stack_size(sa) / 2) ?\
+		stack_size(sa) - find_place(sa, el, 0) : find_place(sa, el, 0);
 	path_sb = (get_index(sb, el) > stack_size(sb) / 2) ?
 			stack_size(sb) - get_index(sb, el) : get_index(sb, el);
 	move = (t_move *)malloc(sizeof(t_move));
@@ -61,53 +61,55 @@ static unsigned int		find_best_index(t_stack *sa, t_stack *sb)
 	return (best_index);
 }
 
-static void		insertion_s(t_stack *sa, t_stack *sb)
+static void		insertion_s(t_env *e)
 {
 	unsigned int	pl_a;
 	unsigned int	pl_b;
 	int				val1;
 	int				val2;
 
-	while (!is_empty(sb))
+	while (!is_empty(e->s_b))
 	{
-		pl_b = find_best_index(sa, sb);
-		pl_a = find_place(sa, get_by_index(sb, pl_b));
-		val1 = get_by_index(sb, pl_b);
-		val2 = get_by_index(sa, pl_a);
-		if (pl_b > stack_size(sb) / 2 && pl_a > stack_size(sa) / 2)
-			while (sa->top->data != val2 && sb->top->data != val1)
-				rrr(sa, sb);
-		else if (pl_b < stack_size(sb) / 2 && pl_a < stack_size(sa) / 2)
-			while (sa->top->data != val2 && sb->top->data != val1)
-				rr(sa, sb);
-		goto_pos(sa, sb, get_index(sb, val1), "b");
-		goto_pos(sa, sb, get_index(sa, val2), "ra");	
-		pa(sa, sb);
+		pl_b = find_best_index(e->s_a, e->s_b);
+		pl_a = find_place(e->s_a, get_by_index(e->s_b, pl_b), 0);
+		val1 = get_by_index(e->s_b, pl_b);
+		val2 = get_by_index(e->s_a, pl_a);
+		if (pl_b > stack_size(e->s_b) / 2 && pl_a > stack_size(e->s_a) / 2)
+			while (e->s_a->top->data != val2 && e->s_b->top->data != val1)
+				rrr(e);
+		else if (pl_b < stack_size(e->s_b) / 2 && pl_a < stack_size(e->s_a) / 2)
+			while (e->s_a->top->data != val2 && e->s_b->top->data != val1)
+				rr(e);
+		goto_pos(e, get_index(e->s_b, val1), "b");
+		goto_pos(e, get_index(e->s_a, val2), "ra");	
+		pa(e);
 	}
 }
 
-void			mainsort(t_stack *sa, t_stack *sb, int *arr, unsigned int size)
+void			mainsort(t_env *e, int *arr, unsigned int size)
 {
 	int		min;
 	int		max;
 
-	while (size / 4 && !is_sorted(sa, 0, stack_size(sa)))
+	while (size / 4 && !is_sorted(e->s_a, 0, stack_size(e->s_a)))
 	{
-			devide(sa, sb, arr, size);
+			devide(e, arr, size);
 			size /= 2;
 	}
-	if (!is_sorted(sa, 0, stack_size(sa)))
-		while (!is_empty(sa))
-			pb(sa, sb);
-	max = find_max(sb, 0, 0);
-	goto_pos(sa, sb, get_index(sb, max), "b");
-	pa(sa, sb);
-	insertion_s(sa, sb);
-	min = find_min(sa, 0, 0);
-	if (get_index(sa, min) > stack_size(sa)/ 2)
-		while (!is_sorted(sa, 0, stack_size(sa)))
-			rra(sa, sb);
+	(e->flags & FL_V1) ? print_stack(e->s_a, e->s_b, e->flags) : 0;
+	if (!is_sorted(e->s_a, 0, stack_size(e->s_a)))
+		while (!is_empty(e->s_a))
+			pb(e);
+	max = find_max(e->s_b, 0, 0);
+	goto_pos(e, get_index(e->s_b, max), "b");
+	pa(e);
+	(e->flags & FL_V1) ? print_stack(e->s_a, e->s_b, e->flags) : 0;
+	insertion_s(e);
+	min = find_min(e->s_a, 0, 0);
+	if (get_index(e->s_a, min) > stack_size(e->s_a) / 2)
+		while (!is_sorted(e->s_a, 0, stack_size(e->s_a)))
+			rra(e);
 	else
-		while (!is_sorted(sa, 0, stack_size(sa)))
-			ra(sa, sb);
+		while (!is_sorted(e->s_a, 0, stack_size(e->s_a)))
+			ra(e);
 }

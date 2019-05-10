@@ -10,31 +10,31 @@ int 		get_by_index(t_stack *sa, unsigned int index)
 	return (list->data);
 }
 
-void		goto_pos(t_stack *sa, t_stack *sb, unsigned int pos, char *o)
+void		goto_pos(t_env *e, unsigned int pos, char *o)
 {
 	int val;
 
 	if (ft_strcmp("ra", o) == 0)
-		val = get_by_index(sa, pos);
+		val = get_by_index(e->s_a, pos);
 	else
-		val = get_by_index(sb, pos);
+		val = get_by_index(e->s_b, pos);
 	if (ft_strcmp("ra", o) == 0)
 	{
-		if (get_index(sa, val) > stack_size(sa) / 2)
-			while (sa->top->data != val)
-				rra(sa, sb);
+		if (get_index(e->s_a, val) > stack_size(e->s_a) / 2)
+			while (e->s_a->top->data != val)
+				rra(e);
 		else
-			while (sa->top->data != val)
-				ra(sa, sb);
+			while (e->s_a->top->data != val)
+				ra(e);
 	}
 	else
 	{
-		if (get_index(sb, val) > stack_size(sb) / 2)
-			while (sb->top->data != val)
-				rrb(sa, sb);
+		if (get_index(e->s_b, val) > stack_size(e->s_b) / 2)
+			while (e->s_b->top->data != val)
+				rrb(e);
 		else
-			while (sb->top->data != val)
-				rb(sa, sb);
+			while (e->s_b->top->data != val)
+				rb(e);
 	}
 }
 
@@ -69,15 +69,13 @@ unsigned int		to_next(t_stack *s, int val)
 	return (i);
 }
 
-unsigned int		find_place(t_stack *s, int val)
+unsigned int		find_place(t_stack *s, int val, unsigned int i)
 {
-	unsigned int	i;
 	int				cmp;
 	t_lst			*list;
 	t_lst			*l1;
 
 	list = s->top;
-	i = 0;
 	while (list)
 	{
 		if (val < list->data)

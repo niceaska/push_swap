@@ -20,15 +20,15 @@ $(NAME): $(NAME_CHECKER)
 	$(CC) $(CFLAGS) -c $(PS_SRCS) -I $(LIBFT_DIR)$(LIBFT_INC)
 	$(CC) $(CFLAGS) $(PS_OBJS) -o $(NAME) -L libft/ -lft
 
-
-
 clean:
 	make clean -C ./libft
-	rm -f $(PS_OBJ) $(CHECKER_OBJ)
+	rm -f $(PS_OBJS)
+	rm -f $(CHECKER_OBJ)
 
 fclean: clean
 	make fclean -C ./libft
-	rm -f $(NAME) $(NAME_CHECKER)
+	rm -f $(NAME)
+	rm -f $(NAME_CHECKER)
 
 re: fclean all
 

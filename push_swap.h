@@ -2,6 +2,20 @@
 # define FT_PUSH_SWAP_H
  
 # include "libft.h"
+# include <fcntl.h>
+
+# define FL_V0 (1 << 0)
+# define FL_V1 (1 << 1)
+# define FL_C (1 << 2)
+# define FL_F (1 << 3)
+
+# define MAG "\033[0;35m"
+# define YEL "\033[0;33m"
+# define GREEN "\033[0;32m"
+# define RED "\033[0;31m"
+# define CYAN "\033[0;36m"
+# define BLUE "\033[0;34m"
+# define COL "\033[0m"
 
 typedef struct		s_lst
 {
@@ -25,8 +39,9 @@ typedef struct		s_env
 {
 	t_stack			*s_a;
 	t_stack			*s_b;
-	unsigned int	s_sa;
-	unsigned int	s_sb;
+	int				fd;
+	short			flags;
+	unsigned int	fl_c;
 }					t_env;
 
 
@@ -39,7 +54,7 @@ unsigned int		stack_size(t_stack *s);
 
 void				free_stack(t_stack *s);
 void				free_tab(char **tab);
-void				print_stack(t_stack *sa, t_stack *sb); 
+void				print_stack(t_stack *sa, t_stack *sb, short flags); 
 void				print_error(t_stack *sa, t_stack *sb, t_env *e);
 
 int					*check_args(char **ag, int ac, t_stack **sa, unsigned int i);
@@ -52,27 +67,27 @@ int					find_max(t_stack *s, int excl, int flag);
 int					find_min(t_stack *s, int excl, int flag);
 void				ft_quicksort(int *arr, unsigned int bot, unsigned int top);
 unsigned int 		get_index(t_stack *sa, int val);
-void				goto_pos(t_stack *sa, t_stack *sb, unsigned int pos, char *o);
+void				goto_pos(t_env *e, unsigned int pos, char *o);
 int 				get_by_index(t_stack *sa, unsigned int index);
-unsigned int		find_place(t_stack *s, int val);
+unsigned int		find_place(t_stack *s, int val, unsigned int i);
 unsigned int		to_next(t_stack *s, int val);
 int					is_more(t_stack *s, int val);
 int					find_bottom(t_stack *s);
 
-void				pa(t_stack *sa, t_stack *sb);
-void				pb(t_stack *sa, t_stack *sb);
-void				ra(t_stack *sa, t_stack *sb);
-void				rb(t_stack *sa, t_stack *sb);
-void				rra(t_stack *sa, t_stack *sb);
-void				rrb(t_stack *sa, t_stack *sb);
-void				rr(t_stack *sa, t_stack *sb);
-void				rrr(t_stack *sa, t_stack *sb);
-void				ss(t_stack *sa, t_stack *sb);
-void				op_sa(t_stack *sa, t_stack *sb);
-void				op_sb(t_stack *sa, t_stack *sb);
+void				pa(t_env *e);
+void				pb(t_env *e);
+void				ra(t_env *e);
+void				rb(t_env *e);
+void				rra(t_env *e);
+void				rrb(t_env *e);
+void				rr(t_env *e);
+void				rrr(t_env *e);
+void				ss(t_env *e);
+void				op_sa(t_env *e);
+void				op_sb(t_env *e);
 
-void				mainsort(t_stack *sa, t_stack *sb, int *arr, unsigned int size);
-void				sel_sort(t_stack *sa, t_stack *sb);
-void				sort_tree(t_stack *sa, t_stack *sb);
+void				mainsort(t_env *e, int *arr, unsigned int size);
+void				sel_sort(t_env *e);
+void				sort_tree(t_env *e);
 
 #endif
