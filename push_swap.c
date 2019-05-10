@@ -25,7 +25,10 @@ int				main(int ac, char **ag)
 		print_error(e->s_a, e->s_b, e);
 	size = stack_size(e->s_a);
 	if (is_sorted(e->s_a, 0, size))
+	{
+		free_all(arr, e);
 		return (0);
+	}
 	if (size <= 3)
 		sort_tree(e);
 	else if (size <= 10)
