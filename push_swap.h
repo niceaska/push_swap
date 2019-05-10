@@ -86,6 +86,10 @@ void				ss(t_env *e);
 void				op_sa(t_env *e);
 void				op_sb(t_env *e);
 
+void				parse_flags(char **ag, int ac, t_env **e);
+t_env				*init_env(int flag);
+void				process_file(t_env **e, char *fname, int flag);
+
 void				mainsort(t_env *e, int *arr, unsigned int size);
 void				sel_sort(t_env *e);
 void				sort_tree(t_env *e);

@@ -61,37 +61,38 @@ static int		append_instr(char **tab, t_stack **sa, t_stack **sb)
 	return(is_sorted((*sa), 0, stack_size(*sa)) && is_empty(*sb));
 }
 
-static void		free_everything(char *line, t_stack *sa, t_stack *sb, int *arr)
+static void		free_everything(char *line, t_env *e, char **inst, int *arr)
 {
+	free_tab(inst);
 	ft_memdel((void *)&line);
-	free_stack(sa);
-	free_stack(sb);
+	if (e->fd != 0)
+		close(e->fd);
+	free_stack(e->s_a);
+	free_stack(e->s_b);
+	free(e);
 	free(arr);
 }
 
 int				main(int ac, char **ag)
 {
-	t_stack		*sa;
-	t_stack		*sb;
+	t_env		*e;
 	int			*arr;
 	char		**inst;
 	char		*line;
 
-	sa = NULL;
-	sb = NULL;
 	if (ac > 1)
 	{
-		sa = init_stack();
-		sb = init_stack();
-		if (!(arr = check_args(ag, ac, &sa, 0)))
-			print_error(sa, sb, NULL);
-		if ((inst = read_instr(0, 0, &line, NULL)) == NULL)
+		if (!(e = init_env(0)))
+			print_error(NULL, NULL, NULL);
+		parse_flags(ag, ac, &e);
+		if (!(arr = check_args(ag + e->fl_c, ac - e->fl_c, &(e->s_a), 0)))
+			print_error(e->s_a, e->s_b, e);
+		if ((inst = read_instr(e->fd, 0, &line, NULL)) == NULL)
 		{
 			ft_memdel((void *)&arr);
-			print_error(sa, sb, NULL);
+			print_error(e->s_a, e->s_b, e);
 		}
-		(append_instr(inst, &sa, &sb) ? write(1, "OK\n", 3) : write(1, "KO\n", 3));
-		free_tab(inst);
-		free_everything(line, sa, sb, arr);
+		(append_instr(inst, &(e->s_a), &(e->s_b)) ? write(1, "OK\n", 3) : write(1, "KO\n", 3));
+		free_everything(line, e, inst, arr);
 	}
 }
