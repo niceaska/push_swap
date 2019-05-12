@@ -115,7 +115,7 @@ fi
 
 echo "\nFalse tests:"
 printf "test 1: "
-if [ "$(echo -e "sa\npb\nrrr" | ./checker 0 9 1 8 2 7 3 6 4 5  | grep "KO" | wc -l)" -eq 1 ]
+if [ "$(echo "sa\npb\nrrr" | ./checker 0 9 1 8 2 7 3 6 4 5  | grep "KO" | wc -l)" -eq 1 ]
 then
 echo "✅  - ./checker 0 9 1 8 2 7 3 6 4 5 (instr: sa pb rrr)"
 else
@@ -147,14 +147,14 @@ fi
 
 echo "\nRandom tests:"
 printf "test 1: "
-if [ "$(echo -e "pb\npb" | ./checker 1 2 3 4 5 | grep "KO" | wc -l)" -eq 1 ]
+if [ "$(echo "pb\npb" | ./checker 1 2 3 4 5 | grep "KO" | wc -l)" -eq 1 ]
 then
 echo "✅  - ./checker 1 2 3 4 5 (instr: pb pb)"
 else
 echo "❌  - ./checker 1 2 3 4 5 (instr: pb pb)"
 fi
 printf "test 2: "
-if [ "$(echo -e "ra\nra\nrra\nrra" | ./checker 1 2 3 4 5 | grep "OK" | wc -l)" -eq 1 ]
+if [ "$(echo "ra\nra\nrra\nrra" | ./checker 1 2 3 4 5 | grep "OK" | wc -l)" -eq 1 ]
 then
 echo "✅  - ./checker 1 2 3 4 5 (instr: ra ra rra rra)"
 else
@@ -195,12 +195,12 @@ then
 	leak=$(valgrind ./push_swap $ARG 2>&1 | grep "definitely lost" | cut -d ':' -f2 | cut -d ' ' -f2 | sed 's/,//')
     heap=$(valgrind ./push_swap $ARG 2>&1 | grep "heap usage" | cut -d ':' -f2 | cut -d ' ' -f2 | sed 's/,//')
 
-    echo $leak
+
 	if [ $heap -gt 0 ]
 	then
-	if [[ $leak -gt 0 ]]
+	if [ $leak -gt 0 ]
 	then
-    echo "Leaks: \033[31m$leak\033[m byte(s)   ❌   \033[33mUse: valgrind --leak-check=full ./push_swap <VALUES> to find all!\033[m"
+echo "Leaks: \033[31m$leak\033[m byte(s)   ❌   \033[33mUse: valgrind --leak-check=full ./push_swap <VALUES> to find all!\033[m"
 	else
 	echo "Leaks: \033[32m0\033[m bytes   ✅"
 	fi
@@ -214,7 +214,7 @@ echo "\n💠 💠 💠 💠 💠 💠 💠 💠 💠 💠 💠 💠 💠 💠 �
 echo "\n\t\t\t 🤹🏻‍♀️  RANDOM VALUES TEST 🤹🏻‍♀️ \n"
 
 
-for ((i = 0; i  <  $count ; i++))
+for ((i = 0; i < $count; i++))
 do
 ARG=`ruby -e "puts ($from..$to).to_a.shuffle.join(' ')"` ; res=$(./push_swap $ARG | wc -l)
 if [ $dif -eq 100 ]
@@ -223,23 +223,23 @@ if [ $res -gt 1500 ]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   0️⃣  ❕  5️⃣  ❗️"
 let "sred += $res"
-elif [ $res -gt 1300 ]
+elif [[ $res -gt 1300 ]]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   1️⃣  ❕  5️⃣     ✅"
 let "sred += $res"
-elif [ $res -gt 1100 ]
+elif [[ $res -gt 1100 ]]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   2️⃣  ❕  5️⃣     ✅  ✅"
 let "sred += $res"
-elif [ $res -gt 900 ]
+elif [[ $res -gt 900 ]]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   3️⃣  ❕  5️⃣     ✅  ✅  ✅"
 let "sred += $res"
-elif [ $res -gt 700 ]
+elif [[ $res -gt 700 ]]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   4️⃣  ❕  5️⃣     ✅  ✅  ✅  ✅"
 let "sred += $res"
-elif [ $res -gt 0 ]
+elif [[ $res -gt 0 ]]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   5️⃣  ❕  5️⃣     ✅  ✅  ✅  ✅  ✅"
 let "sred += $res"

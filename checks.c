@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:43:04 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:43:09 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static long		ft_atol(const char *str)
@@ -29,20 +41,6 @@ static long		ft_atol(const char *str)
 	return ((long)res * sign);
 }
 
-static int		check_valid(char *s)
-{
-	long val;
-
-	val = ft_atol(s);
-	if (val < 0)
-		s++;
-	if (!ft_str_is_numeric(s))
-		return (0);
-	if (val > 2147483647 || val < -2147483648)
-		return (0);
-	return (1);
-}
-
 static int		check_dup(int *arr, int v, unsigned int size)
 {
 	unsigned int i;
@@ -57,31 +55,70 @@ static int		check_dup(int *arr, int v, unsigned int size)
 	return (1);
 }
 
-int		*check_args(char **ag, int ac, t_stack **sa, unsigned int i)
+static int		check_all(char *str, int *arr, unsigned int i)
 {
-	int				*arr;
-	int				val;
-	unsigned int	size;
+	long val;
 
-	size = 0;
-	if (!(arr = (int *)malloc(sizeof(int) * (ac))))
-		return (NULL);
-	while (--ac)
+	val = ft_atol(str);
+	if ((val >= 0 && !ft_str_is_numeric(str)) \
+		|| (val < 0 && !ft_str_is_numeric(str + 1)))
+		return (0);
+	if (val > 2147483647 || val < -2147483648)
+		return (0);
+	if (!check_dup(arr, val, i))
+		return (0);
+	return (1);
+}
+
+static int		check_valid(char *s, int *arr, unsigned int size)
+{
+	long			val;
+	unsigned int	i;
+	char			**str;
+
+	i = 0;
+	str = NULL;
+	if (!(str = ft_strsplit(s, ' ')))
+		return (0);
+	while (str[i])
 	{
-		if (!check_valid(ag[ac]))
+		val = ft_atol(str[i]);
+		if (!check_all(str[i], arr, i + size))
 		{
-			ft_memdel((void *)&arr);
+			free_tab(str);
 			return (0);
 		}
-		val = ft_atoi(ag[ac]);
-		if (!check_dup(arr, val, size))
-		{
-			ft_memdel((void *)&arr);
-			return (0);
-		}
-		arr[size++] = val;
+		arr[size + i++] = val;
 	}
-	while (i < size)
-		push(sa, arr[i++]);
+	free_tab(str);
+	return (i);
+}
+
+int				*check_args(char **ag, int ac, t_stack **sa, unsigned int i)
+{
+	int		*arr;
+	int		s;
+	int		ret;
+
+	s = ac;
+	arr = NULL;
+	while (--s)
+		i += (unsigned int)ft_strlen(ag[s]);
+	if (!(arr = (int *)malloc(sizeof(int) * i)))
+		return (0);
+	i = 0;
+	s = 1;
+	while (s < ac)
+	{
+		if (!(ret = check_valid(ag[s], arr, i)))
+		{
+			ft_memdel((void *)&arr);
+			return (0);
+		}
+		s++;
+		i += ret;
+	}
+	while (i--)
+		push(sa, arr[i]);
 	return (arr);
 }

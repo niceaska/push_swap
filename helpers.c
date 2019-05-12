@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:44:24 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:44:28 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_env	*init_env(int flag)
+t_env		*init_env(int flag)
 {
 	t_env *e;
 
@@ -53,4 +65,22 @@ void		parse_flags(char **ag, int ac, t_env **e)
 		}
 		i++;
 	}
+}
+
+void		ss(t_env *e)
+{
+	swap(&(e->s_a), &(e->s_b), "ss");
+	(e->flags & FL_C) ? ft_putstr(YEL) : 0;
+	ft_putendl_fd("ss", e->fd);
+	(e->flags & FL_C) ? ft_putstr(COL) : 0;
+	(e->flags & FL_V0) ? print_stack(e->s_a, e->s_b, e->flags) : 0;
+}
+
+void		op_sa(t_env *e)
+{
+	swap(&(e->s_a), &(e->s_b), "sa");
+	(e->flags & FL_C) ? ft_putstr(YEL) : 0;
+	ft_putendl_fd("sa", e->fd);
+	(e->flags & FL_C) ? ft_putstr(COL) : 0;
+	(e->flags & FL_V0) ? print_stack(e->s_a, e->s_b, e->flags) : 0;
 }

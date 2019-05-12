@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:47:10 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:47:14 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
- 
+
 # include "libft.h"
 # include <fcntl.h>
 
@@ -44,7 +56,6 @@ typedef struct		s_env
 	unsigned int	fl_c;
 }					t_env;
 
-
 void				push(t_stack **s, int data);
 int					pop(t_stack **s);
 t_stack				*init_stack(void);
@@ -54,10 +65,11 @@ unsigned int		stack_size(t_stack *s);
 
 void				free_stack(t_stack *s);
 void				free_tab(char **tab);
-void				print_stack(t_stack *sa, t_stack *sb, short flags); 
+void				print_stack(t_stack *sa, t_stack *sb, short flags);
 void				print_error(t_stack *sa, t_stack *sb, t_env *e);
 
-int					*check_args(char **ag, int ac, t_stack **sa, unsigned int i);
+int					*check_args(char **ag, int ac,
+								t_stack **sa, unsigned int i);
 void				swap(t_stack **sa, t_stack **sb, char *ord);
 void				push_ab(t_stack **sa, t_stack **sb, char *ord);
 void				rotate_ab(t_stack **sa, t_stack **sb, char *ord);
@@ -66,9 +78,9 @@ void				rev_rotate(t_stack **sa, t_stack **sb, char *ord);
 int					find_max(t_stack *s, int excl, int flag);
 int					find_min(t_stack *s, int excl, int flag);
 void				ft_quicksort(int *arr, unsigned int bot, unsigned int top);
-unsigned int 		get_index(t_stack *sa, int val);
+unsigned int		get_index(t_stack *sa, int val);
 void				goto_pos(t_env *e, unsigned int pos, char *o);
-int 				get_by_index(t_stack *sa, unsigned int index);
+int					get_by_index(t_stack *sa, unsigned int index);
 unsigned int		find_place(t_stack *s, int val, unsigned int i);
 unsigned int		to_next(t_stack *s, int val);
 int					is_more(t_stack *s, int val);

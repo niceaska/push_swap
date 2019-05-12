@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:49:15 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:49:19 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-unsigned int 	get_index(t_stack *sa, int val)
+unsigned int	get_index(t_stack *sa, int val)
 {
 	t_lst			*list;
 	unsigned int	i;
@@ -17,8 +29,8 @@ unsigned int 	get_index(t_stack *sa, int val)
 
 int				is_sorted(t_stack *s, unsigned int start, unsigned int end)
 {
-	t_lst *list;
-	unsigned int i;
+	t_lst			*list;
+	unsigned int	i;
 
 	if (!s)
 		return (-1);

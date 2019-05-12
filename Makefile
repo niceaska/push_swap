@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lgigi <marvin@42.fr>                       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/05/11 13:51:35 by lgigi             #+#    #+#              #
+#    Updated: 2019/05/11 13:51:41 by lgigi            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 NAME_CHECKER = checker
 NAME = push_swap
@@ -6,7 +18,7 @@ LIBFT_DIR = ./libft/
 LIBFT_INC = includes/
 CHECKER_SRCS = free.c checks.c print.c checker.c moves.c utils.c stack.c helpers.c
 CHECKER_OBJ = $(CHECKER_SRCS:.c=.o)
-PS_SRCS = mainsort.c free.c checks.c print.c  moves.c utils.c stack.c quicksort.c ops.c tools.c push_swap.c minisort.c helpers.c
+PS_SRCS = mainsort.c free.c checks.c print.c  moves.c utils.c stack.c quicksort.c ops.c ops2.c tools.c push_swap.c minisort.c helpers.c
 PS_OBJS = $(PS_SRCS:.c=.o)
 
 all: $(NAME)

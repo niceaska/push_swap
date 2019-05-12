@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:48:56 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:49:00 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int 		get_by_index(t_stack *sa, unsigned int index)
+int					get_by_index(t_stack *sa, unsigned int index)
 {
 	t_lst *list;
 
@@ -10,7 +22,7 @@ int 		get_by_index(t_stack *sa, unsigned int index)
 	return (list->data);
 }
 
-void		goto_pos(t_env *e, unsigned int pos, char *o)
+void				goto_pos(t_env *e, unsigned int pos, char *o)
 {
 	int val;
 
@@ -38,7 +50,7 @@ void		goto_pos(t_env *e, unsigned int pos, char *o)
 	}
 }
 
-int		is_more(t_stack *s, int val)
+int					is_more(t_stack *s, int val)
 {
 	t_lst *list;
 

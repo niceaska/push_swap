@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:43:28 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:43:35 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int		check_instr(char *line)
@@ -58,7 +70,7 @@ static int		append_instr(char **tab, t_stack **sa, t_stack **sb)
 			rev_rotate(sa, sb, tab[i]);
 		i++;
 	}
-	return(is_sorted((*sa), 0, stack_size(*sa)) && is_empty(*sb));
+	return (is_sorted((*sa), 0, stack_size(*sa)) && is_empty(*sb));
 }
 
 static void		free_everything(char *line, t_env *e, char **inst, int *arr)
@@ -92,7 +104,8 @@ int				main(int ac, char **ag)
 			ft_memdel((void *)&arr);
 			print_error(e->s_a, e->s_b, e);
 		}
-		(append_instr(inst, &(e->s_a), &(e->s_b)) ? write(1, "OK\n", 3) : write(1, "KO\n", 3));
+		(append_instr(inst, &(e->s_a), &(e->s_b)) ?\
+				write(1, "OK\n", 3) : write(1, "KO\n", 3));
 		free_everything(line, e, inst, arr);
 	}
 }

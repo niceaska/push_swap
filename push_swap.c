@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:46:42 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:46:45 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void		free_all(int *arr, t_env *e)
@@ -34,7 +46,7 @@ int				main(int ac, char **ag)
 	else if (size <= 10)
 		sel_sort(e);
 	else
-		mainsort(e, arr, ac - e->fl_c - 1);
+		mainsort(e, arr, size);
 	(e->flags & FL_V1) ? print_stack(e->s_a, e->s_b, e->flags) : 0;
 	free_all(arr, e);
 }

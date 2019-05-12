@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgigi <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/11 13:47:59 by lgigi             #+#    #+#             */
+/*   Updated: 2019/05/11 13:48:24 by lgigi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	push(t_stack **s, int data)
+void			push(t_stack **s, int data)
 {
 	t_lst *new;
 
@@ -14,7 +26,7 @@ void	push(t_stack **s, int data)
 	(*s)->top = new;
 }
 
-int		pop(t_stack **s)
+int				pop(t_stack **s)
 {
 	int		data;
 	t_lst	*tmp;
@@ -28,7 +40,7 @@ int		pop(t_stack **s)
 	return (data);
 }
 
-t_stack	*init_stack(void)
+t_stack			*init_stack(void)
 {
 	t_stack *stack;
 
@@ -38,7 +50,7 @@ t_stack	*init_stack(void)
 	return (stack);
 }
 
-int		is_empty(t_stack *s)
+int				is_empty(t_stack *s)
 {
 	return ((!s->top) ? 1 : 0);
 }
@@ -46,7 +58,7 @@ int		is_empty(t_stack *s)
 unsigned int	stack_size(t_stack *s)
 {
 	t_lst			*list;
-	unsigned int	size;		
+	unsigned int	size;
 
 	size = 0;
 	if (!s)
