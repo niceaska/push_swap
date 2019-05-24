@@ -20,13 +20,12 @@ rrb: reverse rotate b- shift down all elements of stack b by 1. The last element
 rrr: rra and rrb at the same time.</p>
 
 The goal is to sort the stack with the minimum possible number of operations.
-
 <p>no more than 2-3 operations for 3 integers<br>
 no more than 12 operations for 5 integers<br>
 no more than 700 operations for 100 integers<br>
 no more than 5300 operations for 500 integers</p>
 
-<p style="font-size: 12">My marks is:<br>
+<p style="font-size: 14px">My marks is:<br>
 2-3 for 3<br>
 9-11 for 5<br>
 600-670 for 100<br
