@@ -3,7 +3,7 @@ Second project of algoritmic branch.
 
 The goal of this project is sort stack with following rules:
 
-On start you have only two stacks - first one - stack a - contains a random number of either positive or negative numbers without any duplicates.◦Second - stack b - is empty.
+On start you have only two stacks - first one - stack a - contains a random number of either positive or negative numbers without any duplicates. Second - stack b - is empty.
 
 You can use only this operations:
 <p>sa: swap a- swap the first 2 elements at the top of stacka. Do nothing if thereis only one or no elements).<br>
